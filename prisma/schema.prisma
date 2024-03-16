@@ -1,0 +1,79 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  email          String   @unique
+  name           String?
+  password       String?
+  position       String?
+  positionId     String?
+  teamleader     Boolean?
+  superadmin     Boolean?
+  teamleaderName String?
+}
+
+model UserTransaction {
+  id     String          @id @default(auto()) @map("_id") @db.ObjectId
+  email  String?
+  amount Float?
+  reason String?
+  type   TransactionType
+  date   DateTime?
+}
+
+enum TransactionType {
+  INCOME
+  EXPENSE
+}
+
+model Projects {
+  id                      String            @id @default(auto()) @map("_id") @db.ObjectId
+  projectname             String?
+  projectvalue            Float?
+  startingdate            DateTime?
+  endingdate              DateTime?
+  headdeveloperid         String            @db.ObjectId
+  headdevelopername       String
+  status                  StatusType
+  headdeveloperauthstatus StatusType
+  paymentstatus           PaymentStatusType
+}
+
+enum StatusType {
+  PENDING
+  WORKING
+  DONE
+}
+
+enum PaymentStatusType {
+  PAID
+  PENDING
+}
+
+model ProjectAssign {
+  id                      String                         @id @default(auto()) @map("_id") @db.ObjectId
+  projectname             String
+  headdeveloperid         String                         @db.ObjectId
+  headdevelopername       String
+  startingdate            DateTime
+  endingdate              DateTime
+  projectid               String                         @db.ObjectId
+  developername           String?
+  developerid             String                         @db.ObjectId
+  projectvalue            Float?
+  status                  StatusType
+  headdeveloperauthstatus StatusType
+  paymentstatus           PaymentStatusProjectAssignType
+}
+
+enum PaymentStatusProjectAssignType {
+  PAID
+  PENDING
+}
