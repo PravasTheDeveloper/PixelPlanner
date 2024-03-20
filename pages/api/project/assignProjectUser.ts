@@ -27,7 +27,7 @@ export default async function handler(
 
         const checkIfUserAlredayExists = await prisma.projectAssign.findFirst({
             where: {
-                headdeveloperid: headdeveloperid
+                headdeveloperid: developerid
             }
         })
 
