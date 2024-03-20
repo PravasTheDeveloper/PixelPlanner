@@ -16,7 +16,7 @@ import BeatLoader from "react-spinners/BeatLoader";
 import { useRouter } from 'next/router'
 import PacmanLoader from "react-spinners/PacmanLoader";
 
-export default function login() {
+export default function Login() {
     const { data: session, status = "loading" } = useSession();
     const router = useRouter();
 

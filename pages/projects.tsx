@@ -13,7 +13,7 @@ import TableData from '@/components/Home/TableData/TableData';
 import AddProjectButton from '@/components/Home/AddButton/AddProjectButton';
 
 
-export default function projects() {
+export default function Projects() {
     return (
         <>
             <NavBarSection />
